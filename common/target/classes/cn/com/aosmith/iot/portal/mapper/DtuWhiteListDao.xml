@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.aosmith.iot.portal.dao.DtuWhiteListDao">
+  <resultMap id="BaseResultMap" type="cn.com.aosmith.iot.portal.entity.DtuWhiteList">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="imei" jdbcType="VARCHAR" property="imei" />
+    <result column="ccid" jdbcType="VARCHAR" property="ccid" />
+    <result column="carton_no" jdbcType="VARCHAR" property="cartonNo" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, imei, ccid, carton_no, is_deleted, gmt_create, gmt_modified
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from md_dtu_whitelist
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from md_dtu_whitelist
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.com.aosmith.iot.portal.entity.DtuWhiteList" useGeneratedKeys="true">
+    insert into md_dtu_whitelist (imei, ccid, carton_no, 
+      is_deleted, gmt_create, gmt_modified
+      )
+    values (#{imei,jdbcType=VARCHAR}, #{ccid,jdbcType=VARCHAR}, #{cartonNo,jdbcType=VARCHAR}, 
+      #{isDeleted,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.com.aosmith.iot.portal.entity.DtuWhiteList" useGeneratedKeys="true">
+    insert into md_dtu_whitelist
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="imei != null">
+        imei,
+      </if>
+      <if test="ccid != null">
+        ccid,
+      </if>
+      <if test="cartonNo != null">
+        carton_no,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="imei != null">
+        #{imei,jdbcType=VARCHAR},
+      </if>
+      <if test="ccid != null">
+        #{ccid,jdbcType=VARCHAR},
+      </if>
+      <if test="cartonNo != null">
+        #{cartonNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.aosmith.iot.portal.entity.DtuWhiteList">
+    update md_dtu_whitelist
+    <set>
+      <if test="imei != null">
+        imei = #{imei,jdbcType=VARCHAR},
+      </if>
+      <if test="ccid != null">
+        ccid = #{ccid,jdbcType=VARCHAR},
+      </if>
+      <if test="cartonNo != null">
+        carton_no = #{cartonNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.aosmith.iot.portal.entity.DtuWhiteList">
+    update md_dtu_whitelist
+    set imei = #{imei,jdbcType=VARCHAR},
+      ccid = #{ccid,jdbcType=VARCHAR},
+      carton_no = #{cartonNo,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

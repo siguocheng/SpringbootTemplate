@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sgc.servicehi.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.sgc.servicehi.entity.User">
+    <id column="user_name" jdbcType="VARCHAR" property="userName" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from md_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  
+</mapper>
